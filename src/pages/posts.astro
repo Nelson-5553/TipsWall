@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const response = await fetch("http://127.0.0.1:8000/api/v1/posts/");
+const result = await response.json();
+const posts = result.data;
+---
+
+<Layout>
+  <body class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-6xl mx-auto space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+        {posts.map((post) => (
+          <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">{post.title}</h2>
+
+            <p class="text-gray-600 text-sm mb-4">
+              {post.excerpt}...
+            </p>
+
+            <span class="text-xs text-gray-500">
+              Publicado el {post.published_at ?? 'fecha no disponible'}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Paginación: si más adelante implementas paginación dinámica, puedes colocarla aquí -->
+      <div class="mt-8 text-center text-sm text-gray-500">
+        Paginación aquí (si aplica)
+      </div>
+    </div>
+  </body>
+</Layout>
