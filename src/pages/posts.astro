@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Pagination from "../components/Pagination.astro";
+import Category from "../components/Category.astro";
+
 import { fetchFromApi } from '../lib/api';
 
 interface Post {
@@ -11,7 +13,7 @@ interface Post {
 
 const result = await fetchFromApi('api/posts', {
   headers: {
-    Authorization: `Bearer 1|2NkvUTndyWJr3UshZvyaEofVHPsZiVy8vLF9ME0u2d4c6169`
+    Authorization: `Bearer 2|RyGdb5fF2PQRltUNY3RmoekS6ufVhPccfx4JmFbw24bd90bf`
   }
 });
 
@@ -22,9 +24,12 @@ const lastPage = result.meta?.last_page ?? 1;
 
 <Layout>
   <div class="flex justify-center items-center min-h-screen p-6">
-    <div class="max-w-6xl mx-auto space-y-6">
+    <div class="max-w-7xl mx-auto space-y-6 mt-16">
+      <div class="overflow-x-scroll">
+        <Category/>
+      </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        {
+        { 
           posts.map((post) => (
             <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition relative h-full">
               <div>
@@ -43,7 +48,7 @@ const lastPage = result.meta?.last_page ?? 1;
         }
       </div>
 
-      <!-- Paginación: si más adelante implementas paginación dinámica, puedes colocarla aquí -->
+  
       <div class="mt-8 text-center text-sm text-gray-500">
         <Pagination
           currentPage={currentPage}

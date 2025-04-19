@@ -1,0 +1,15 @@
+---
+import { fetchFromApi } from '../lib/api';
+const result = await fetchFromApi('api/categories');
+const category = result.data;
+---
+
+<h1>
+    <div class="flex flex-row space-x-2">
+    {category.map((categories: { name: unknown; })=>(
+      <h1 class="bg-white py-2 px-3 rounded-full border-2">
+       {categories.name}
+       </h1>
+    ))}
+    </div>
+</h1>   
