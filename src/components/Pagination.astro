@@ -1,0 +1,15 @@
+---
+const { currentPage, lastPage, basePath = "/posts" } = Astro.props;
+---
+
+<div class="mt-8 flex justify-center items-center gap-4 text-sm text-gray-700">
+  {currentPage > 1 && (
+    <a href={`${basePath}/${currentPage - 1}`} class="hover:underline">Anterior</a>
+  )}
+
+  <span>Página {currentPage} de {lastPage}</span>
+
+  {currentPage < lastPage && (
+    <a href={`${basePath}/${currentPage + 1}`} class="hover:underline">Siguiente</a>
+  )}
+</div>
