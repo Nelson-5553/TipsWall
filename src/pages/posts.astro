@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Pagination from "../components/Pagination.astro";
+import { fetchFromApi } from '../lib/api';
 
 interface Post {
   post_name: string;
@@ -8,14 +9,12 @@ interface Post {
   published_at?: string;
 }
 
-const { API_HOST } = import.meta.env;
-const response = await fetch(`${API_HOST}api/posts`, {
+const result = await fetchFromApi('api/posts', {
   headers: {
-    Authorization: `Bearer 1|2NkvUTndyWJr3UshZvyaEofVHPsZiVy8vLF9ME0u2d4c6169  `,
-    "Content-Type": "application/json",
-  },
+    Authorization: `Bearer 1|2NkvUTndyWJr3UshZvyaEofVHPsZiVy8vLF9ME0u2d4c6169`
+  }
 });
-const result = await response.json();
+
 const posts: Post[] = result.data;
 const currentPage = result.meta?.current_page ?? 1;
 const lastPage = result.meta?.last_page ?? 1;

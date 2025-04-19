@@ -1,13 +1,10 @@
 ---
 
 import { ArrowRight, Lightbulb, Sparkles, Star } from "@lucide/astro"
+import { fetchFromApi } from '../lib/api';
 
-
-
-const { API_HOST } = import.meta.env;
-const response = await fetch(`${API_HOST}api/home`);
-const result = await response.json();
-const post = result.data[0];
+const posts = await fetchFromApi('api/home');
+const post = posts.data[0];
 ---
 
 <!-- <img id="background" src={background.src} alt="" fetchpriority="high" /> -->
