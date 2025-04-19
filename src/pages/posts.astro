@@ -1,6 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Pagination from '../components/Pagination.astro';
+import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
+import background from "../assets/background.svg";
 
 interface Post {
   post_name: string;
@@ -8,11 +9,12 @@ interface Post {
   published_at?: string;
 }
 
-const response = await fetch("http://127.0.0.1:8000/api/posts", {
+const { API_HOST } = import.meta.env;
+const response = await fetch(`${API_HOST}api/posts`, {
   headers: {
-    'Authorization': `Bearer 1|2NkvUTndyWJr3UshZvyaEofVHPsZiVy8vLF9ME0u2d4c6169  `,
-    'Content-Type': 'application/json',
-  }
+    Authorization: `Bearer 1|2NkvUTndyWJr3UshZvyaEofVHPsZiVy8vLF9ME0u2d4c6169  `,
+    "Content-Type": "application/json",
+  },
 });
 const result = await response.json();
 const posts: Post[] = result.data;
@@ -21,28 +23,37 @@ const lastPage = result.meta?.last_page ?? 1;
 ---
 
 <Layout>
-  <div class="flex justify-center items-center bg-gray-100 min-h-screen p-6">
+  <img id="background" src={background.src} alt="" fetchpriority="high" />
+  <div class="flex justify-center items-center min-h-screen p-6">
     <div class="max-w-6xl mx-auto space-y-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        {posts.map((post) => (
-          <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">{post.post_name}</h2>
+        {
+          posts.map((post) => (
+            <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition relative h-full">
+              <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-2">
+                  {post.post_name}
+                </h2>
 
-            <p class="text-gray-600 text-sm mb-4">
-              {post.excerpt}...
-            </p>
+                <p class="text-gray-600 h-16 text-sm mb-4">{post.excerpt}...</p>
+              </div>
 
-            <span class="text-xs text-gray-500">
-              Publicado el {post.published_at ?? 'fecha no disponible'}
-            </span>
-          </div>
-        ))}
+              <div class="text-xs text-gray-500">
+                Publicado el {post.published_at ?? "fecha no disponible"}
+              </div>
+            </div>
+          ))
+        }
       </div>
 
       <!-- Paginación: si más adelante implementas paginación dinámica, puedes colocarla aquí -->
       <div class="mt-8 text-center text-sm text-gray-500">
-        <Pagination currentPage={currentPage} lastPage={lastPage} basePath="/posts" />
+        <Pagination
+          currentPage={currentPage}
+          lastPage={lastPage}
+          basePath="/posts"
+        />
       </div>
     </div>
-</div>
+  </div>
 </Layout>
