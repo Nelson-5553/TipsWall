@@ -1,4 +1,5 @@
 ---
+import { API_POST } from 'astro:env/server';
 import { fetchFromApi } from '../lib/api';
 
 interface Post {
@@ -11,7 +12,7 @@ interface Post {
   };
 }
 
-const result = await fetchFromApi('api/posts', {
+const result = await fetchFromApi(API_POST, {
   headers: {
     Authorization: `Bearer 2|RyGdb5fF2PQRltUNY3RmoekS6ufVhPccfx4JmFbw24bd90bf`
   }
@@ -20,7 +21,7 @@ const result = await fetchFromApi('api/posts', {
 const posts: Post[] = result.data;
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     { 
       posts.map((post) => (
 <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 bg-white h-full">
@@ -28,7 +29,7 @@ const posts: Post[] = result.data;
     
 
     <div class="flex items-center gap-3">
-      <div class="h-10 w-10 rounded-full overflow-hidden bg-gray-200">
+      <div class="hidden sm:block h-10 w-10 rounded-full overflow-hidden bg-gray-200">
         <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="Avatar" class="h-full w-full object-cover" />
       </div>
       <div>

@@ -12,6 +12,7 @@ export default defineConfig({
   env: {
     schema: {
       API_HOST_HOME: envField.string({ context: "server", access: "secret" }),
+      API_POST: envField.string({ context: "server", access: "public" }),
     }
   }
 });
