@@ -12,11 +12,11 @@ import "../styles/global.css";
 		<script src="../js/script.js"></script>
 		<title>Astro Basics</title>
 	</head>
-	<body>
-		<div class="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
+	<body class="min-h-screen bg-white">
+		<div class="fixed inset-0 z-[-2] w-full h-full rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
 		<Nav/>
 		<slot />
-	</body>
+	  </body>
 </html>
 
 <style>

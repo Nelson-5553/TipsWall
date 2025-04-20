@@ -4,14 +4,25 @@ const result = await fetchFromApi('api/categories');
 const category = result.data;
 ---
 
-<h1>
-    <div class="flex flex-row space-x-2 overflow-x-auto">
-    {category.map((categories: { name: unknown; })=>(
-    <div class="bg-white w-48 py-2 px-3 rounded-full border-2">
-      <h1 class="text-lg text-center font-sans">
-       {categories.name}
-       </h1>
+<div class="relative w-full max-w-full">
+  <div class="w-full overflow-x-auto scrollbar-hide">
+    <div class="flex space-x-3 px-2 py-4 pb-4 w-12">
+      {category.map((categories: { name: unknown }) => (
+        <div class="bg-white py-2 px-4 rounded-full border border-gray-300 shadow-sm text-center text-sm flex-shrink-0 transition-all hover:shadow-md">
+          {categories.name}
+        </div>
+      ))}
     </div>
-    ))}
-    </div>
-</h1>   
+  </div>
+</div>
+
+<style>
+  /* Ocultar scrollbar pero mantener funcionalidad */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE y Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+</style>
