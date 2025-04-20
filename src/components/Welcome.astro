@@ -1,6 +1,6 @@
 ---
 
-import { ArrowRight, Sparkles } from "@lucide/astro"
+// import { ArrowRight, Sparkles } from "@lucide/astro"
 import Hometip from "../components/Hometip.astro"
 export const prerender = true;
 ---
@@ -13,7 +13,7 @@ export const prerender = true;
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="space-y-6">
         <div class="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
-          <Sparkles class="h-4 w-4 mr-2" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles-icon lucide-sparkles"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
           <span>Consejos diarios para mejorar tu vida</span>
         </div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
@@ -26,7 +26,7 @@ export const prerender = true;
         <div class="flex flex-row gap-4">
           <a href="/posts" class="flex flex-row items-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium">
             Más consejos del día
-            <ArrowRight class="ml-2 h-4 w-4" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
           <button class="border-purple-200 text-purple-600 hover:bg-purple-50">
             Explorar categorías
