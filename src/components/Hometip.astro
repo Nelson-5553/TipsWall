@@ -1,8 +1,9 @@
 ---
 import { Lightbulb, Star } from "@lucide/astro"
 import { fetchFromApi } from '../lib/api';
+import { API_HOST_HOME } from "astro:env/server";
 
-const posts = await fetchFromApi('api/home');
+const posts = await fetchFromApi(API_HOST_HOME);
 const post = posts.data[0];
 ---
 

@@ -2,6 +2,7 @@
 
 import { ArrowRight, Sparkles } from "@lucide/astro"
 import Hometip from "../components/Hometip.astro"
+export const prerender = true;
 ---
 
 <!-- <img id="background" src={background.src} alt="" fetchpriority="high" /> -->
@@ -32,7 +33,9 @@ import Hometip from "../components/Hometip.astro"
           </button>
         </div>
       </div>
-     <Hometip/>
+     <Hometip server:defer>
+      <span slot="fallback" class="text-center text-xl">Buscando tu consejo del dia...</span>
+    </Hometip>
     </div>
   </section>    
 </div>
