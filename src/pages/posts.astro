@@ -1,25 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Pagination from "../components/Pagination.astro";
 import Category from "../components/Category.astro";
-
-import { fetchFromApi } from '../lib/api';
-
-interface Post {
-  post_name: string;
-  excerpt: string;
-  published_at?: string;
-}
-
-const result = await fetchFromApi('api/posts', {
-  headers: {
-    Authorization: `Bearer 2|RyGdb5fF2PQRltUNY3RmoekS6ufVhPccfx4JmFbw24bd90bf`
-  }
-});
-
-const posts: Post[] = result.data;
-const currentPage = result.meta?.current_page ?? 1;
-const lastPage = result.meta?.last_page ?? 1;
+import Tips from "../components/Tips.astro";
 ---
 
 <Layout>
@@ -28,34 +10,11 @@ const lastPage = result.meta?.last_page ?? 1;
     <div class="overflow-x-auto">
       <Category/>
     </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        { 
-          posts.map((post) => (
-            <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition relative h-full">
-              <div>
-                <h2 class="text-xl font-bold text-gray-800 mb-2">
-                  {post.post_name}
-                </h2>
-
-                <p class="text-gray-600 h-16 text-sm mb-4">{post.excerpt}...</p>
-              </div>
-
-              <div class="text-xs text-gray-500">
-                Publicado el {post.published_at ?? "fecha no disponible"}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-
+      
+    <Tips/>
   
       <div class="mt-8 text-center text-sm text-gray-500">
-        <Pagination
-          currentPage={currentPage}
-          lastPage={lastPage}
-          basePath="/posts"
-        />
-      </div>
+       </div>
     </div>
   </div>
 </Layout>
