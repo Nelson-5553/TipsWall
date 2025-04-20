@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@lucide/astro": "^0.501.0",
     "@tailwindcss/vite": "^4.1.4",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.4",
