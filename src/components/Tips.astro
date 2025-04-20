@@ -5,6 +5,10 @@ interface Post {
   post_name: string;
   excerpt: string;
   published_at?: string;
+  category_name?: string;
+  author: {
+    name: string;
+  };
 }
 
 const result = await fetchFromApi('api/posts', {
@@ -16,22 +20,57 @@ const result = await fetchFromApi('api/posts', {
 const posts: Post[] = result.data;
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
     { 
       posts.map((post) => (
-        <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition relative h-full">
-          <div>
-            <h2 class="text-xl font-bold text-gray-800 mb-2">
-              {post.post_name}
-            </h2>
+<div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 bg-white h-full">
+  <div class="p-5 flex flex-col h-full space-y-4">
+    
 
-            <p class="text-gray-600 h-16 text-sm mb-4">{post.excerpt}...</p>
-          </div>
+    <div class="flex items-center gap-3">
+      <div class="h-10 w-10 rounded-full overflow-hidden bg-gray-200">
+        <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="Avatar" class="h-full w-full object-cover" />
+      </div>
+      <div>
+        <p class="font-medium text-sm text-gray-800">{post.author.name}</p>
+        <p class="text-xs text-gray-500">Publicado el  {post.published_at}</p>
+      </div>
+      <span class="ml-auto border border-gray-300 text-xs px-2 py-0.5 rounded bg-gray-50 text-gray-600">
+        {post.category_name}
+      </span>
+    </div>
 
-          <div class="text-xs text-gray-500">
-            Publicado el {post.published_at ?? "fecha no disponible"}
-          </div>
-        </div>
+    <!-- Contenido -->
+    <div>
+      <h3 class="text-xl font-bold mb-2 text-gray-800"> {post.post_name}</h3>
+      <p class="text-gray-600">
+        {post.excerpt} 
+     </p>
+    </div>
+
+    <!-- Footer fijo al fondo -->
+    <div class="flex justify-between items-center pt-2 border-t border-gray-100 mt-auto">
+      <div class="flex gap-4">
+        <button class="flex items-center gap-1 text-gray-600 hover:text-pink-500 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> <span class="text-xs">12</span>
+        </button>
+        <button class="flex items-center gap-1 text-gray-600 hover:text-blue-500 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-icon lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> <span class="text-xs">3</span>
+        </button>
+      </div>
+      <div class="flex gap-2">
+        <button class="h-8 w-8 flex items-center justify-center text-gray-600 hover:text-purple-500 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        </button>
+        <button class="h-8 w-8 flex items-center justify-center text-gray-600 hover:text-amber-500 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark-icon lucide-bookmark"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
       ))
     }
   </div>
