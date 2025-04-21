@@ -4,7 +4,7 @@ import { fetchFromApi } from '../lib/api';
 
 interface Post {
   post_name: string;
-  excerpt: string;
+  content: string;
   published_at?: string;
   category_name?: string;
   author: {
@@ -14,7 +14,7 @@ interface Post {
 
 const result = await fetchFromApi(API_POST, {
   headers: {
-    Authorization: `Bearer 2|RyGdb5fF2PQRltUNY3RmoekS6ufVhPccfx4JmFbw24bd90bf`
+    Authorization: `Bearer 2|lTf3VxFAnv9fhqBYPwpkykkF78ZYXtwRvadeGVima4dd9fcf`
   }
 });
 
@@ -45,7 +45,7 @@ const posts: Post[] = result.data;
     <div>
       <h3 class="text-xl font-bold mb-2 text-gray-800"> {post.post_name}</h3>
       <p class="text-gray-600">
-        {post.excerpt} 
+        {post.content} 
      </p>
     </div>
 
