@@ -6,7 +6,10 @@ interface Post {
   post_name: string;
   content: string;
   published_at?: string;
-  category_name?: string;
+  category:{
+    id: number;
+    name: string;
+  }
   author: {
     name: string;
   };
@@ -25,7 +28,7 @@ const posts: Post[] = result.data;
     <div class="flex space-x-3 px-2 py-4 pb-4 w-12">
       {posts.map((post) => (
         <div class="bg-white py-2 px-4 rounded-full border border-gray-300 shadow-sm text-center text-sm flex-shrink-0 transition-all hover:shadow-md">
-          {post.category_name}
+          {post.category.name}
         </div>
       ))}
     </div>
@@ -47,7 +50,7 @@ const posts: Post[] = result.data;
         <p class="text-xs text-gray-500">Publicado el  {post.published_at}</p>
       </div>
       <span class="ml-auto border border-gray-300 text-xs px-2 py-0.5 rounded bg-gray-50 text-gray-600">
-        {post.category_name}
+        {post.category.name}
       </span>
     </div>
 
@@ -85,3 +88,14 @@ const posts: Post[] = result.data;
       ))
     }
   </div>
+
+  <style>
+    /* Ocultar scrollbar pero mantener funcionalidad */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE y Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  </style>

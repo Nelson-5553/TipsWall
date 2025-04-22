@@ -8,7 +8,7 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/lightbulb.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<script src="../js/script.js"></script>
+		<script src="../lib/plugins/alpine.js"></script>
 		<title>TipsWall</title>
 	</head>
   <body class="bg-white min-h-screen relative">
@@ -16,10 +16,8 @@ import "../styles/global.css";
    <div class="p-4">
        <a href="/" class="inline-flex text-lg font-semibold items-center gap-2 text-gray-600 hover:text-purple-700 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left-icon lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg> Volver al inicio</a> 
    </div>
-    <div class="flex items-center justify-center min-h-screen max-w-7xl mx-auto px-4">
-           <!-- Centrado + ancho máximo -->
+       
       <slot />
-    </div>
   </body>
 </html>
 

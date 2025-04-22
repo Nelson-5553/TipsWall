@@ -1,0 +1,33 @@
+---
+import Sharetip from "../components/Sharetip.astro"
+import FormLayout from "../layouts/FormLayout.astro"
+---
+
+<FormLayout>
+    
+     
+
+    <div class="max-w-3xl mx-auto px-4">
+     <div class="max-w-7xl mx-auto mb-8">
+        <h1 class="text-3xl font-bold text-center text-purple-800 mb-2">Comparte tu sabiduría</h1>
+        <p class="text-center text-gray-600 max-w-xl mx-auto">
+          Tus consejos pueden ayudar a miles de personas. Comparte tu experiencia y conocimiento con la comunidad de
+          TipsWall.
+        </p>
+        <div class="w-full h-auto rounded-t-xl bg-white border-b-1 border-b-gray-300 px-6 py-6 mt-12">
+
+            <h1 class="flex flex-row items-center text-xl text-purple-500 gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb-icon lucide-lightbulb"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                Comparte tu consejo
+            </h1>
+
+        </div>
+
+        <Sharetip/>
+      
+    </div>
+    <script>
+       
+      </script>
+  
+</FormLayout>
