@@ -2,27 +2,20 @@
 import { fetchFromApi } from '../lib/api/api';
 const result = await fetchFromApi('api/categories');
 const category = result.data;
+console.log(category);
+
+interface Category {
+  id: number;
+  name: string;
+}
+
 ---
 
-<div class="relative w-full max-w-full">
-  <div class="w-full overflow-x-auto scrollbar-hide">
-    <div class="flex space-x-3 px-2 py-4 pb-4 w-12">
-      {category.map((categories: { name: unknown }) => (
-        <div class="bg-white py-2 px-4 rounded-full border border-gray-300 shadow-sm text-center text-sm flex-shrink-0 transition-all hover:shadow-md">
-          {categories.name}
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
 
-<style>
-  /* Ocultar scrollbar pero mantener funcionalidad */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE y Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-</style>
+      <select id="category" name="category" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-purple-500 focus:border-purple-500 p-2">
+        <option value="" disabled selected>Selecciona una categoría</option>
+      {category.map((categories: Category) => (
+                <option value={categories.id}>{categories.name}</option>
+      ))}
+            </select>
+ 
