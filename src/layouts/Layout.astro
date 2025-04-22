@@ -1,6 +1,18 @@
 ---
 import Nav from "../components/Nav.astro";
 import "../styles/global.css";
+
+import { API_USER } from 'astro:env/server';
+import { fetchFromApi } from '../lib/api/api';
+const cookies = Astro.request.headers.get('cookie');
+const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
+const result = await fetchFromApi(API_USER, {
+  headers: {
+	Authorization: `Bearer ${token}`
+  }
+});
+const user = result.user;
+console.log(user);
 ---
 <!doctype html>
 <html lang="en">
@@ -14,7 +26,7 @@ import "../styles/global.css";
 	</head>
 	<body class="min-h-screen bg-white">
 		<div class="fixed inset-0 z-[-2] w-full h-full rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
-		<Nav/>
+		<Nav name={user.name}/>
 		<slot />
 	  </body>
 </html>
