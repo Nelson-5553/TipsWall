@@ -1,4 +1,6 @@
-document.getElementById('crudForm').addEventListener('submit', async (event) => {
+const PUBLIC_API_HOST = import.meta.env.PUBLIC_API_HOST
+;
+document.getElementById('TipForm').addEventListener('submit', async (event) => {
     event.preventDefault();
   
     const form = event.target;
@@ -6,33 +8,32 @@ document.getElementById('crudForm').addEventListener('submit', async (event) => 
   
     // Datos que se enviarán al servidor
     const data = {
-      title: formData.get('title'),
-      description: formData.get('description'),
-      game: formData.get('game'),
+      post_name: formData.get('post_name'),
+      content: formData.get('content'),
+      category_id: formData.get('category_id'),
     };
   
     try {
-      const apiUrl = import.meta.env.PUBLIC_API_URL;
-      const response = await fetch(`${apiUrl}/api/crud`, {
+      const response = await fetch(`${PUBLIC_API_HOST}api/posts`, {
         method: 'POST',
+        credentials: 'include',
+        mode: 'cors', // Explícitamente configurado como CORS
         headers: {
           'Content-Type': 'application/json',
+          'authorization': 'Bearer 2|lTf3VxFAnv9fhqBYPwpkykkF78ZYXtwRvadeGVima4dd9fcf'
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       });
   
       const result = await response.json();
   
-      const responseMessage = document.getElementById('responseMessage');
       if (response.ok) {
-        responseMessage.textContent = 'Comentario guardado con éxito';
-  
-        // Llama a la función para renderizar el nuevo comentario
-        addCommentToDOM(result);
+        alert('Guardado exitosamente');
       } else {
-        responseMessage.textContent = `Error: ${result.message}`;
+        alert(`Error: ${result.message}`);
       }
     } catch (error) {
-      document.getElementById('responseMessage').textContent = `Error: ${error.message}`;
+      console.error('Error al enviar:', error);
+      alert('Error al conectar con el servidor');
     }
   });

@@ -17,7 +17,7 @@ interface Post {
 
 const result = await fetchFromApi(API_POST, {
   headers: {
-    Authorization: `Bearer 2|lTf3VxFAnv9fhqBYPwpkykkF78ZYXtwRvadeGVima4dd9fcf`
+    Authorization: `Bearer 2|H8tOtr6FWuApJEg6Yf5Wj2Jr9DbR07TEdWDuaJBO82a185aa`
   }
 });
 
@@ -99,3 +99,14 @@ const posts: Post[] = result.data;
       scrollbar-width: none;  /* Firefox */
     }
   </style>
+  <script is:inline>
+  import { API_POST } from 'astro:env/server';
+import { fetchFromApi } from '../lib/api/api';
+
+
+const result = await fetchFromApi(API_POST, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+  </script>
