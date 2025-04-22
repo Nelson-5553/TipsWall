@@ -26,7 +26,8 @@ if (form) {
       const result = await response.json();
 
       if (response.ok) {
-        alert('Login exitoso');
+        document.cookie = `token=${result.token}; Path=/; Secure; SameSite=Strict`;
+        alert('Login exitoso' + result.user.name);
       } else {
         alert(result.message || 'Error al iniciar sesión');
       }

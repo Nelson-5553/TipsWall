@@ -15,13 +15,17 @@ interface Post {
   };
 }
 
+const cookies = Astro.request.headers.get('cookie');
+const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
+
 const result = await fetchFromApi(API_POST, {
   headers: {
-    Authorization: `Bearer 2|H8tOtr6FWuApJEg6Yf5Wj2Jr9DbR07TEdWDuaJBO82a185aa`
+    Authorization: `Bearer ${token}`
   }
 });
 
 const posts: Post[] = result.data;
+console.log(posts);
 ---
 <div class="relative w-full max-w-full">
   <div class="w-full overflow-x-auto scrollbar-hide">
