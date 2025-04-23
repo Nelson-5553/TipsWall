@@ -32,12 +32,19 @@ if (token) {
     console.log('Posts cargados exitosamente');
   } catch (err) {
     console.error('Error al cargar posts:', err);
-    result = { data: [], message: 'Error al cargar posts' };
+    result = { data: [], message: 'INICIA SESION PARA VER MAS CONSEJOS' };
   }
 }
 
 const posts: Post[] = result.data || [];
 ---
+<div>
+  {result.message && (
+    <div class="bg-purple-100 text-purple-700 p-4 rounded-md mb-4">
+      {result.message}
+    </div>
+  )}
+</div>
 <div class="relative w-full max-w-full">
   <div class="w-full overflow-x-auto scrollbar-hide">
     <div class="flex space-x-3 px-2 py-4 pb-4 w-12">
