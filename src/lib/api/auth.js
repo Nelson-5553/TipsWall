@@ -27,7 +27,8 @@ if (form) {
 
       if (response.ok) {
         document.cookie = `token=${result.token}; Path=/; Secure; SameSite=Strict`;
-        alert('Login exitoso' + result.user.name);
+        alert('Login exitoso ' + result.user.name);
+        window.location.href = '/'; // Redirigir a la página de dashboard
       } else {
         alert(result.message || 'Error al iniciar sesión');
       }

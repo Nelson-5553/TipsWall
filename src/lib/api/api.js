@@ -18,6 +18,7 @@ export async function fetchFromApi(endpoint, options = {}) {
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
+        
         ...options.headers,
       },
       ...options,

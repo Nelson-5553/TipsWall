@@ -6,7 +6,7 @@ interface Post {
   post_name: string;
   content: string;
   published_at?: string;
-  category:{
+  category: {
     id: number;
     name: string;
   }
@@ -18,13 +18,25 @@ interface Post {
 const cookies = Astro.request.headers.get('cookie');
 const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
 
-const result = await fetchFromApi(API_POST, {
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-});
+// Valor por defecto para result
+let result = { data: [], message: 'No hay sesión activa' };
 
-const posts: Post[] = result.data;
+if (token) {
+  try {
+    result = await fetchFromApi(API_POST, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
+      }
+    });
+    console.log('Posts cargados exitosamente');
+  } catch (err) {
+    console.error('Error al cargar posts:', err);
+    result = { data: [], message: 'Error al cargar posts' };
+  }
+}
+
+const posts: Post[] = result.data || [];
 ---
 <div class="relative w-full max-w-full">
   <div class="w-full overflow-x-auto scrollbar-hide">
@@ -102,14 +114,3 @@ const posts: Post[] = result.data;
       scrollbar-width: none;  /* Firefox */
     }
   </style>
-  <script is:inline>
-  import { API_POST } from 'astro:env/server';
-import { fetchFromApi } from '../lib/api/api';
-
-
-const result = await fetchFromApi(API_POST, {
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-});
-  </script>

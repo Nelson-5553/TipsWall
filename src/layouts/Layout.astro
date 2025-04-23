@@ -5,14 +5,36 @@ import "../styles/global.css";
 import { API_USER } from 'astro:env/server';
 import { fetchFromApi } from '../lib/api/api';
 const cookies = Astro.request.headers.get('cookie');
-const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
-const result = await fetchFromApi(API_USER, {
-  headers: {
-	Authorization: `Bearer ${token}`
+const token = cookies?.match(/token=([^;]+)/)?.[1];
+
+let message = '';
+type User = {
+  name: string;
+};
+
+let result: { message: string; user: User | null } = { message: 'No hay sesión activa', user: null }; // Valor por defecto
+
+if (token) {
+  try {
+    result = await fetchFromApi(API_USER, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
+      }
+    });
+    
+    console.log('RESULT:', result);
+    message = result.message || ''; // Asignar message desde el resultado
+    console.log('Mensaje:', message);
+  } catch (err) {
+    console.error('Error al autenticar:', err);
+    message = 'Error al autenticar usuario.';
+    result = { message, user: null }; // Actualizar result en caso de error
   }
-});
-const user = result.user;
-console.log(user);
+}
+
+const login = result; // Ahora result siempre estará definido
+console.log('Login:', login);
 ---
 <!doctype html>
 <html lang="en">
@@ -26,7 +48,8 @@ console.log(user);
 	</head>
 	<body class="min-h-screen bg-white">
 		<div class="fixed inset-0 z-[-2] w-full h-full rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
-		<Nav name={user.name}/>
+		<Nav name={login.user?.name ? login.user.name : login.message}
+/>
 		<slot />
 	  </body>
 </html>
