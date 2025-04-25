@@ -8,7 +8,7 @@ document.getElementById('TipForm').addEventListener('submit', async (event) => {
   
     // Datos que se enviarán al servidor
     const data = {
-      post_name: formData.get('post_name'),
+      title: formData.get('post_name'),
       content: formData.get('content'),
       category_id: formData.get('category_id'),
     };
@@ -20,7 +20,8 @@ document.getElementById('TipForm').addEventListener('submit', async (event) => {
         mode: 'cors', // Explícitamente configurado como CORS
         headers: {
           'Content-Type': 'application/json',
-          'authorization': 'Bearer 2|lTf3VxFAnv9fhqBYPwpkykkF78ZYXtwRvadeGVima4dd9fcf'
+          'authorization': 'Bearer ' + document.cookie.split('token=')[1].split(';')[0], // Obtener el token de la cookie
+          'Accept': 'application/json',
         },
         body: JSON.stringify(data)
       });
