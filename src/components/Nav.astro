@@ -13,8 +13,13 @@ const { name } = Astro.props;
 	<!-- Desktop Menu -->
 	<ul class="hidden items-center gap-4 md:flex">
 		<li><a href="/" class="font-bold text-primary underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-primary-dark dark:hover:text-primary-dark" aria-current="page">Inicio</a></li>
-		<li><a href="#" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Pricing</a></li>
-		<li><a href="#" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Blog</a></li>
+		{ name === 'No hay sesión activa' && (
+  <li>
+    <a href="/register" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">
+      Registrarse
+    </a>
+  </li>
+)}
 		<li>
 			<a 
 			  href={name && name === 'No hay sesión activa' ? '/login' : '/profile'} 
@@ -48,13 +53,11 @@ const { name } = Astro.props;
 		<a href="/" class="w-full text-lg font-bold text-primary focus:underline dark:text-primary-dark" aria-current="page">Inicio</a>
 	</li>
 	<li class="py-4">
-		<a href="#" class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">Pricing</a>
+		<a href="/register" class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">Registrarse</a>
 	</li>
+
 	<li class="py-4">
-		<a href="#" class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">Blog</a>
-	</li>
-	<li class="py-4">
-		<a href='/login' class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">{name}</a>
+		<a href={name && name === 'No hay sesión activa' ? '/login' : '/profile'}  class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">{name && name !== 'No hay sesión activa' ? name : 'Iniciar sesión'}</a>
 	</li>
 </ul>
 </nav>
