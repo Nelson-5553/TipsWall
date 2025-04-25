@@ -30,6 +30,7 @@ document.getElementById('TipForm').addEventListener('submit', async (event) => {
   
       if (response.ok) {
         alert('Guardado exitosamente');
+        window.location.href = '/posts'; // Redirigir a la página de tips
       } else {
         alert(`Error: ${result.message}`);
       }
