@@ -17,7 +17,7 @@ const { name } = Astro.props;
 		<li><a href="#" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Blog</a></li>
 		<li>
 			<a 
-			  href={name && name === 'No autorizado' ? '/profile' : '/login'} 
+			  href={name && name === 'No hay sesión activa' ? '/login' : '/profile'} 
 			  class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full px-5 py-2 text-sm font-medium shadow transition">
 			  {name && name !== 'No hay sesión activa' ? name : 'Iniciar sesión'}
 			</a>
