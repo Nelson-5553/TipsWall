@@ -19,7 +19,7 @@ const cookies = Astro.request.headers.get('cookie');
 const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
 
 // Valor por defecto para result
-let result = { data: [], message: 'No hay sesión activa' };
+let result = { data: [], message: 'Inicia sesion para ver mas consejos' };
 
 if (token) {
   try {

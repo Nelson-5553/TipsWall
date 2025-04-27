@@ -1,3 +1,27 @@
+---
+import { API_POST } from 'astro:env/server';
+import { fetchFromApi } from '../lib/api/api';
+
+const cookies = Astro.request.headers.get('cookie');
+const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
+
+// Valor por defecto para result
+let result = { data: [], message: 'Inicia sesion para compartir consejos' };
+
+if (token) {
+  try {
+    result = await fetchFromApi(API_POST, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
+      }
+    });
+  } catch (err) {
+    console.error('Error al cargar posts:', err);
+    result = { data: [], message: 'INICIA SESION PARA COMPARTIR CONSEJOS' };
+  }
+}
+---
 <div class="container mx-auto py-6 px-4">
     <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
       <div class="text-center md:text-left">
@@ -6,10 +30,21 @@
           Un espacio donde las mejores ideas y consejos cobran vida. Explora, comparte y crece.
         </p>
       </div>
-      <a href="/tipsform" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full px-4 py-4 shadow-lg flex items-center gap-2 transform transition-transform hover:scale-105 w-auto">
-        <span class="flex flex-row items-center gap-2 font-medium">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-          Compartir un consejo
-        </span>
-      </a>
+      <div>
+        {result.message && (
+          <div class="bg-purple-100 text-purple-700 p-4 rounded-md mb-4">
+            {result.message}
+          </div>
+        )}
+      </div>
+    
+      {token && (
+        <a href="/tipsform" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full px-4 py-4 shadow-lg flex items-center gap-2 transform transition-transform hover:scale-105 w-auto">
+          <span class="flex flex-row items-center gap-2 font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            Compartir un consejo
+          </span>
+        </a>
+      )}
+      
     </div>
