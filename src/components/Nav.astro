@@ -52,9 +52,11 @@ const { name } = Astro.props;
 	<li class="py-4">
 		<a href="/" class="w-full text-lg font-bold text-primary focus:underline dark:text-primary-dark" aria-current="page">Inicio</a>
 	</li>
+	{ name === 'No hay sesión activa' && (
 	<li class="py-4">
 		<a href="/register" class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">Registrarse</a>
 	</li>
+	)}
 
 	<li class="py-4">
 		<a href={name && name === 'No hay sesión activa' ? '/login' : '/profile'}  class="w-full text-lg font-medium text-on-surface focus:underline dark:text-on-surface-dark">{name && name !== 'No hay sesión activa' ? name : 'Iniciar sesión'}</a>
