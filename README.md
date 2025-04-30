@@ -1,48 +1,33 @@
-# Astro Starter Kit: Basics
+# 💡 TipsWall
 
-```sh
-npm create astro@latest -- --template basics
-```
+**TipsWall** es una aplicación web que ofrece consejos prácticos y efectivos para mejorar distintos aspectos de la vida diaria. Desde productividad hasta bienestar personal, el objetivo es ayudarte a construir hábitos positivos mediante recomendaciones breves y accionables.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🖼 Vista previa
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+![TipsWall Screenshot](https://nelson-5553.vercel.app/img/Projectos/tipswall.png)
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Funcionalidades
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- 📝 Consejo destacado del día.
+- 🗂 Explora consejos por categoría (productividad, salud, motivación, etc.).
+- 👤 Registro e inicio de sesión de usuarios.
+- 🌙 Interfaz amigable y diseño responsivo
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## 🛠 Tecnologías utilizadas
 
-All commands are run from the root of the project, from a terminal:
+| Tecnología       | Descripción                        |
+| ---------------- | ---------------------------------- |
+| **HTML5**        | Estructura semántica del contenido |
+| **Tailwind CSS** | Estilizado moderno y responsivo    |
+| **JavaScript**   | Interactividad de la UI            |
+| **PHP**          | Backend                            |
+| **Frameworks**   | Laravel API / Vanilla JS / Astro   |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
