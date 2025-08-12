@@ -4,9 +4,8 @@ import "../styles/global.css";
 
 import { API_USER } from 'astro:env/server';
 import { fetchFromApi } from '../lib/api/api';
-const cookies = Astro.request.headers.get('cookie');
-const token = cookies?.match(/token=([^;]+)/)?.[1];
 
+const token = Astro.cookies.get('token')?.value;
 let message = '';
 type User = {
   name: string;

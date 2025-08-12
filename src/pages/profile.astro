@@ -3,8 +3,8 @@ import Logout from '../components/Logout.astro';
 import FormLayout from '../layouts/FormLayout.astro';
 import { fetchFromApi } from '../lib/api/api';
 
-const cookies = Astro.request.headers.get('cookie');
-const token = cookies?.match(/token=([^;]+)/)?.[1];
+
+const token = Astro.cookies.get('token')?.value;
 
 let user = null;
 let message = '';
@@ -17,13 +17,10 @@ if (token) {
          Accept: 'application/json'
       }
     });
-    console.log('RESULT:', result);
     
     user = result.user;
     message = result.message;
 
-    console.log('Usuario:', user);
-    console.log('Mensaje:', message);
 
   } catch (err) {
     console.error('Error al autenticar:', err);

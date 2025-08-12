@@ -15,9 +15,8 @@ interface Post {
   };
 }
 
-const cookies = Astro.request.headers.get('cookie');
-const token = cookies?.match(/token=([^;]+)/)?.[1]; // Extrae el token
 
+const token = Astro.cookies.get('token')?.value;
 // Valor por defecto para result
 let result = { data: [], message: 'Inicia sesion para ver mas consejos' };
 
